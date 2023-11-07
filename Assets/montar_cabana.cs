@@ -7,6 +7,7 @@ public class montar_cabana : MonoBehaviour
     public GameObject martelo;
     public GameObject cabana;
     public GameObject lona;
+    public GameObject efeitoT;
     public bool inside;
 
     private void OnTriggerEnter(Collider other)
@@ -19,8 +20,10 @@ public class montar_cabana : MonoBehaviour
 
         if (other.CompareTag("martelo") && inside == true)
         {
+            efeitoT.SetActive(true);
             lona.SetActive(false);
             cabana.SetActive(true);
+            Invoke("FimEfeito", 1.0f);
         }
     }
     private void OnTriggerExit(Collider other)
@@ -29,5 +32,10 @@ public class montar_cabana : MonoBehaviour
         {
             inside = false;
         }
+    }
+
+    private void FimEfeito()
+    {
+        efeitoT.SetActive(false);
     }
 }
